@@ -67,7 +67,7 @@ export default function Layout({ children }) {
           >
             My Team App
           </Typography>
-          {!user ? null : <Typography>{user.name}</Typography>}
+          {!user ? null : <Typography>{user.display}</Typography>}
           <IconButton
             edge="end"
             aria-label="options"

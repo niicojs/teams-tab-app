@@ -15,7 +15,9 @@ export default function () {
       (async () => {
         try {
           const microsoftTeams = await import('@microsoft/teams-js');
-          microsoftTeams.initialize();
+          try {
+            microsoftTeams.initialize();
+          } catch {}
           setTeams(microsoftTeams);
           microsoftTeams.getContext((context) => {
             setContext(context);
