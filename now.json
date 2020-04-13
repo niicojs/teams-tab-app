@@ -1,0 +1,7 @@
+{
+  "build": {
+    "env": {
+      "APP_CLIENT_ID": "@teams-tap-app-clientid"
+    }
+  }
+}
