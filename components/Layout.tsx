@@ -1,21 +1,17 @@
 import React, { useState } from 'react';
-import Link from 'next/link';
+// import Link from 'next/link';
 import { makeStyles } from '@material-ui/core/styles';
-import { useFetch } from 'use-http';
 
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
-import MenuItem from '@material-ui/core/MenuItem';
-import Menu from '@material-ui/core/Menu';
+// import MenuItem from '@material-ui/core/MenuItem';
+// import Menu from '@material-ui/core/Menu';
 
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 
-import { useGlobalState } from '../src/state';
-
-const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
@@ -37,21 +33,14 @@ const useStyles = makeStyles((theme) => ({
     overflow: 'auto',
     padding: theme.spacing(3),
   },
-  drawerPaper: {
-    position: 'relative',
-    whiteSpace: 'nowrap',
-    width: drawerWidth,
-  },
   toolbar: theme.mixins.toolbar,
 }));
 
-export default function Layout({ children }) {
+export default function Layout({ user, children }) {
   const classes = useStyles();
-  const [openMenu, setOpenMenu] = useState(null);
-  const [user] = useGlobalState('user');
-
-  const closeMenu = () => setOpenMenu(null);
-  const onLogOut = () => window.location.replace('/signout');
+  // const [openMenu, setOpenMenu] = useState(null);
+  // const closeMenu = () => setOpenMenu(null);
+  // const onLogOut = () => window.location.replace('/signout');
 
   return (
     <div className={classes.root}>
@@ -67,20 +56,20 @@ export default function Layout({ children }) {
           >
             My Team App
           </Typography>
-          {!user ? null : <Typography>{user.display}</Typography>}
+          {!user ? null : <Typography>{user.name}</Typography>}
           <IconButton
             edge="end"
             aria-label="options"
             aria-controls="user-menu"
             aria-haspopup="true"
-            onClick={(evt) => setOpenMenu(evt.currentTarget)}
+            // onClick={(evt) => setOpenMenu(evt.currentTarget)}
             color="inherit"
           >
             <AccountCircleIcon />
           </IconButton>
         </Toolbar>
       </AppBar>
-      <Menu
+      {/* <Menu
         anchorEl={openMenu}
         anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
         id="user-menu"
@@ -90,7 +79,7 @@ export default function Layout({ children }) {
         onClose={closeMenu}
       >
         <MenuItem onClick={onLogOut}>Déconnexion</MenuItem>
-      </Menu>
+      </Menu> */}
       <main className={classes.content}>
         <div className={classes.toolbar} />
         {children}

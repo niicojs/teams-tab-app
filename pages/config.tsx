@@ -1,17 +1,31 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
+
+import { makeStyles } from '@material-ui/core/styles';
+import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
+
 import useTeams from '../src/useTeams';
 
-export default function Config() {
-  const { teams, ready, context } = useTeams();
-  const [info, setInfo] = useState('loading');
-  const init = useRef<boolean>();
+const useStyles = makeStyles((theme) => ({
+  root: {
+    display: 'flex',
+  },
+  content: {
+    flexGrow: 1,
+    height: '100vh',
+    overflow: 'auto',
+    padding: theme.spacing(5),
+    textAlign: 'center',
+  },
+}));
 
-  if (!init.current) {
-    if (ready && teams) {
-      init.current = true;
+export default function Config() {
+  const classes = useStyles();
+  const { teams } = useTeams({});
+
+  useEffect(() => {
+    if (teams) {
       const appUrl = window.location.origin;
-      setInfo(appUrl);
       teams.settings.registerOnSaveHandler((saveEvent) => {
         teams.settings.setSettings({
           websiteUrl: appUrl,
@@ -23,14 +37,16 @@ export default function Config() {
       });
       teams.settings.setValidityState(true);
     }
-  }
+  }, teams);
 
   return (
-    <div>
-      <div>
-        <Typography variant="h4">Config</Typography>
+    <Container className={classes.root}>
+      <div className={classes.content}>
+        <div>
+          <Typography variant="h4">Config</Typography>
+        </div>
+        <div>Nothing to be done here, carry one :)</div>
       </div>
-      <div>Nothing to be done here, carry one :)</div>
-    </div>
+    </Container>
   );
 }
