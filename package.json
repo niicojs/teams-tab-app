@@ -21,7 +21,7 @@
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-loader-spinner": "^3.1.14",
-    "use-http": "^1.0.2",
+    "use-http": "^1.0.6",
     "use-ssr": "^1.0.23"
   },
   "devDependencies": {
