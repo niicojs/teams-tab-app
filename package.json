@@ -25,7 +25,7 @@
     "use-ssr": "^1.0.23"
   },
   "devDependencies": {
-    "@types/node": "^13.11.1",
+    "@types/node": "^13.13.1",
     "typescript": "^3.8.3"
   },
   "browserslist": {
